@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>计算锻炼器</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700;900&family=Google+Sans:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <!-- 初始选择难度面板 -->
+    <div id="setup-panel">
+        <h1>计算锻炼器</h1>
+        <p>选择位数立刻开始练习！</p>
+        
+        <div class="difficulty-buttons">
+            <button class="level-btn" data-digits="5">五位数</button>
+            <button class="level-btn" data-digits="6">六位数</button>
+            <button class="level-btn" data-digits="7">七位数</button>
+        </div>
+    </div>
+
+    <!-- 练习运行视图 -->
+    <div id="workout-view" class="hidden">
+        <!-- 顶部与中间：两个计算数字 -->
+        <div class="numbers-container">
+            <div id="Num1" class="num-display"></div>
+            <div class="op-symbol">×</div>
+            <div id="Num2" class="num-display"></div>
+        </div>
+
+        <!-- 底部区域：仅有顶部的平行无限长灰虚线 -->
+        <div class="bottom-dashed-banner">
+            <div id="answer-wrapper">
+                <input type="text" id="ans-input" inputmode="numeric" placeholder="输入答案后按回车" autocomplete="off">
+                <div id="feedback-msg"></div>
+            </div>
+
+            <!-- 正计时器 -->
+            <div class="timer-wrapper">
+                <span id="digit-timer">0.00</span> 秒
+            </div>
+            
+            <button id="backBtn">返回重选</button>
+        </div>
+    </div>
+</body>
+</html>
