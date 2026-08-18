@@ -1,0 +1,193 @@
+/* 确保所有表单元素继承全局字体 */
+* {
+    font-family: "Google Sans", "Noto Sans SC", sans-serif;
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    background-color: #fff;
+    color: #000;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: radial-gradient(circle, #c2c2c2 1px, transparent 1px);
+    background-size: 10px 10px;
+    position: relative;
+    overflow-x: hidden;
+    box-sizing: border-box;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* 初始选择面板 */
+#setup-panel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+#setup-panel h1 {
+    font-size: 36px;
+    margin: 0;
+}
+
+#setup-panel p {
+    font-size: 18px;
+    color: #666;
+    margin: 0;
+}
+
+.difficulty-buttons {
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.level-btn {
+    padding: 12px 28px;
+    font-size: 20px;
+    font-weight: bold;
+    background-color: #138b45;
+    color: #fff;
+    border: none;
+    border-radius: 1000px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.level-btn:hover {
+    transform: scale(1.05);
+    background-color: #0f6f37;
+}
+
+/* 锻炼界面总容器 */
+#workout-view {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+/* 数字区域集中在屏幕中上方 */
+.numbers-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+}
+
+.num-display {
+    font-size: 80px;
+    font-weight: bold;
+    color: #000;
+    line-height: 1.1;
+    text-align: center;
+}
+
+.op-symbol {
+    font-size: 40px;
+    color: #666;
+    margin: 10px 0;
+}
+
+/* 底部无限长灰虚线区域（只有顶部线，没有下边界） */
+.bottom-dashed-banner {
+    width: 100vw;
+    border-top: 2px dashed #888;
+    border-bottom: none; /* 移除下边框 */
+    padding: 24px 0 30px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    background-color: rgba(255, 255, 255, 0.95);
+}
+
+/* 答案输入框容器 */
+#answer-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+/* 特大加粗答案输入框 */
+#ans-input {
+    font-size: 40px;
+    font-weight: 900;
+    text-align: center;
+    width: 360px;
+    padding: 6px 12px;
+    border: 3px solid #666;
+    border-radius: 12px;
+    outline: none;
+    background-color: #fff;
+    transition: all 0.25s ease;
+}
+
+#ans-input.correct {
+    border-color: #2e7d32;
+    color: #2e7d32;
+    background-color: #e8f5e9;
+}
+
+#ans-input.incorrect {
+    border-color: #d32f2f;
+    color: #d32f2f;
+    background-color: #ffebee;
+}
+
+/* 反馈文字提示 */
+#feedback-msg {
+    font-size: 18px;
+    font-weight: bold;
+    min-height: 24px;
+}
+
+.correct-msg {
+    color: #2e7d32;
+}
+
+.incorrect-msg {
+    color: #d32f2f;
+}
+
+/* 计时器样式 */
+.timer-wrapper {
+    font-size: 16px;
+    color: #555;
+}
+
+#digit-timer {
+    font-size: 22px;
+    font-weight: bold;
+    color: #138b45;
+}
+
+/* 返回按钮 */
+#backBtn {
+    background: transparent;
+    border: 1px solid #999;
+    padding: 4px 16px;
+    border-radius: 12px;
+    color: #666;
+    cursor: pointer;
+    font-size: 14px;
+    margin-top: 4px;
+}
+
+#backBtn:hover {
+    background-color: #f0f0f0;
+}
