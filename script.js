@@ -18,12 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let elapsedTime = 0;
   let feedbackTimeout = null;
 
-  // 只能输入数字
-  ansInput.addEventListener('input', (e) => {
-    e.target.value = e.target.value.replace(/\D/g, '');
-  });
-
-  // 随机数生成
+  // 随机整数生成函数
   function randInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
@@ -66,25 +61,25 @@ document.addEventListener('DOMContentLoaded', () => {
     const correctAnswer = val1 * val2;
     const userAnswer = Number(ansInput.value);
 
-    // 清除定时的误报清理
+    // 清除定时重置任务
     if (feedbackTimeout) clearTimeout(feedbackTimeout);
 
     ansInput.classList.remove('correct', 'incorrect');
 
     if (userAnswer === correctAnswer) {
-      // 答对：停止计时，提示所用时间
+      // 答对：停止计时并提示用时
       stopTimer();
       ansInput.classList.add('correct');
       ansInput.disabled = true; // 锁定输入框
       feedbackMsg.className = 'correct-msg';
       feedbackMsg.textContent = `回答正确！你用了 ${elapsedTime.toFixed(2)} 秒`;
     } else {
-      // 答错：提示错误，清空输入框，不上报正确答案
+      // 答错：提示错误并自动重置，不清空也不展示正确答案
       ansInput.classList.add('incorrect');
       feedbackMsg.className = 'incorrect-msg';
       feedbackMsg.textContent = '答错了！';
 
-      // 1 秒后自动重置提示，让用户重新尝试
+      // 1 秒后自动清空提示与输入，让用户继续尝试
       feedbackTimeout = setTimeout(() => {
         ansInput.value = '';
         ansInput.classList.remove('incorrect');
@@ -94,12 +89,33 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // 点击难度按钮，立即开始正计时
+  // 监听输入框事件：过滤非数字，并在达到目标位数时自动提交判定
+  ansInput.addEventListener('input', (e) => {
+    // 过滤非数字
+    e.target.value = e.target.value.replace(/\D/g, '');
+
+    const correctAnswer = val1 * val2;
+    const currentInput = e.target.value;
+
+    // 当输入的字符数量达到正确答案的位数时，无需按回车直接自动校验
+    if (currentInput.length === String(correctAnswer).length) {
+      verifyAnswer();
+    }
+  });
+
+  // 兼顾软键盘/硬件键盘的回车键提交
+  ansInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      verifyAnswer();
+    }
+  });
+
+  // 点击难度按钮，立即开始题目与正计时
   levelBtns.forEach(btn => {
     btn.addEventListener('click', () => {
       const digits = Number(btn.getAttribute('data-digits'));
       
-      // 初始化状态
+      // 重置界面与输入状态
       ansInput.value = '';
       ansInput.disabled = false;
       ansInput.classList.remove('correct', 'incorrect');
@@ -114,14 +130,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // 回车提交判定
-  ansInput.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter') {
-      verifyAnswer();
-    }
-  });
-
-  // 返回重选按钮
+  // 返回重选按钮逻辑
   backBtn.addEventListener('click', () => {
     stopTimer();
     workoutView.classList.add('hidden');
