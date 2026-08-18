@@ -6,7 +6,7 @@
     <title>计算锻炼器</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700;900&family=Google+Sans:wght@400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700;900&family=Roboto:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="style.css">
     <script src="script.js" defer></script>
 </head>
@@ -35,14 +35,17 @@
         <!-- 底部区域：仅有顶部的平行无限长灰虚线 -->
         <div class="bottom-dashed-banner">
             <div id="answer-wrapper">
-                <input 
-    type="text" 
-    inputmode="decimal" 
-    enterkeyhint="done" 
-    id="ans-input" 
-    placeholder="输入答案" 
-    autocomplete="off"
->
+                <!-- 使用 form 包裹输入框，确保捕获 iOS 软键盘的“勾勾/完成”提交动作 -->
+                <form id="ans-form" action="javascript:void(0);">
+                    <input 
+                        type="text" 
+                        inputmode="numeric" 
+                        enterkeyhint="done" 
+                        id="ans-input" 
+                        placeholder="输入答案" 
+                        autocomplete="off"
+                    >
+                </form>
                 <div id="feedback-msg"></div>
             </div>
 
