@@ -19,9 +19,18 @@ document.addEventListener('DOMContentLoaded', () => {
   let feedbackTimeout = null;
 
   // 只能输入数字
-  ansInput.addEventListener('input', (e) => {
-    e.target.value = e.target.value.replace(/\D/g, '');
-  });
+  // 只能输入数字 + 位数匹配自动校验
+ansInput.addEventListener('input', (e) => {
+  e.target.value = e.target.value.replace(/\D/g, '');
+
+  const correctAnswer = val1 * val2;
+  const currentInput = e.target.value;
+  // 输入位数和答案位数一致，自动判题
+  if (currentInput.length === String(correctAnswer).length) {
+    verifyAnswer();
+  }
+});
+
 
   // 随机数生成
   function randInt(min, max) {
